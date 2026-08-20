@@ -1,0 +1,27 @@
+
+{
+  "name": "nodejs-hw",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "start": "node app.js",
+  "dev": "node --watch app.js"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanialapa/nodejs-hw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  
+  "bugs": {
+    "url": "https://github.com/tanialapa/nodejs-hw/issues"
+  },
+  "homepage": "https://github.com/tanialapa/nodejs-hw#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
