@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
-import pinoHttp from 'pino-http';
+import pino from 'pino-http';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -9,9 +9,18 @@ const PORT = process.env.PORT ?? 3000;
 app.use(cors());
 app.use(express.json());
 app.use(
-  pinoHttp({
+  pino({
+    level: 'info',
     transport: {
       target: 'pino-pretty',
+      options: {
+        colorize: true,
+        translateTime: 'HH:MM:ss',
+        ignore: 'pid,hostname',
+        messageFormat:
+          '{req.method} {req.url} {res.statusCode} - {responseTime}ms',
+        hideObject: true,
+      },
     },
   }),
 );
