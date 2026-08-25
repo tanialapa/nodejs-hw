@@ -1,6 +1,6 @@
 import { HttpError } from 'http-errors';
 
-export const errorHandler = (error, req, res) => {
+export const errorHandler = (error, req, res, next) => {
   if (error instanceof HttpError) {
     res.status(error.status).json({ error: error.message || error.name });
 
@@ -9,6 +9,6 @@ export const errorHandler = (error, req, res) => {
   const isProd = process.env.NODE_ENV === 'production';
 
   res.status(500).json({
-    error: isProd ? 'Internal Server Error' : error.message,
+    message: isProd ? 'Internal Server Error' : error.message,
   });
 };
