@@ -1,14 +1,14 @@
-import { HttpError } from '../helpers/HttpError.js';
+import { HttpError } from 'http-errors';
 
-export const errorHandler = (error, req, res, next) => {
+export const errorHandler = (error, req, res) => {
   if (error instanceof HttpError) {
     res.status(error.status).json({ error: error.message || error.name });
 
     return;
   }
+  const isProd = process.env.NODE_ENV === 'production';
 
-  console.log("Error 'Middleware:", error.message);
   res.status(500).json({
-    error: 'Internal Server Error',
+    error: isProd ? 'Internal Server Error' : error.message,
   });
 };
